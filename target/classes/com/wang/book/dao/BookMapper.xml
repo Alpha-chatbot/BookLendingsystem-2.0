@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wang.book.dao.BookMapper">
+
+
+
+    <select id="queryById" resultType="com.wang.book.pojo.Books" >
+
+        SELECT *  FROM booklendingsystem_ssm.books
+        WHERE bookID = #{bookId}
+    </select>
+
+    <select id="queryByName" parameterType="Books" resultType="com.wang.book.pojo.Books">
+
+        SELECT bookID,bookName,number,detail FROM books
+
+            where bookName like "%"#{bookName}"%"
+
+    </select>
+
+    <select id="queryAll" resultType="com.wang.book.pojo.Books">
+		SELECT bookID,bookName,number,detail
+		FROM booklendingsystem_ssm.books
+		ORDER BY bookID
+		LIMIT #{offset}, #{limit}
+
+	</select>
+
+    <update id="reduceNumber">
+		UPDATE books
+		SET number = number - 1
+		WHERE
+			bookID = #{bookId}
+		AND number > 0
+	</update>
+
+	<update id="increaseNumber">
+		UPDATE books
+		SET number = number + 1
+		WHERE
+			bookID = #{bookId}
+		AND number >= 0
+	</update>
+
+
+</mapper>

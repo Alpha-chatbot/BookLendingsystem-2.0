@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 使用jdbc的getGeneratedKeys获取数据库自增主键值 -->
+        <setting name="useGeneratedKeys" value="true" />
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <setting name="useColumnLabel" value="true" />
+        <!--使用驼峰命名转换，可以自动去掉数据库内字段名的下划线并转为java驼峰格式，例如bookName -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+
+    </settings>
+    <!--取别名 -->
+    <typeAliases>
+        <package name="com.wang.book.pojo"/>
+    </typeAliases>
+
+
+
+    <mappers>
+        <mapper resource="com/wang/book/dao/BookMapper.xml"/>
+        <mapper resource="com/wang/book/dao/LendingMapper.xml"/>
+        <mapper resource="com/wang/book/dao/StudentMapper.xml"/>
+
+    </mappers>
+
+
+</configuration>
